@@ -45,10 +45,10 @@ export default function TodoList() {
         className='bt'
         onClick={() => {
         setText('');
-        setTodos([{
+        setTodos([...todos,{
           id: todos.length,
           text: text
-        }, ...todos]);
+        }, ]);
         setMostrarInput(false);
       }}>Criar</button>
       </div>
