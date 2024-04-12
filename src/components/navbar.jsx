@@ -11,7 +11,7 @@ function NavbarPagina() {
   return (
     <Navbar expand="lg" className="navbar__cor">
       <Container>
-        <Navbar.Brand href="#home">
+        <Navbar.Brand>
           <div className="imagem">
             <img src={logo} alt="Logo" />
           </div>
@@ -20,10 +20,10 @@ function NavbarPagina() {
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto" />
           <Nav className="ml-auto">
-            <Nav.Link href="#link" className="icones">
+            <Nav.Link className="icones">
               <FontAwesomeIcon className="icones" icon={faUser} />
             </Nav.Link>
-            <Nav.Link href="#link">
+            <Nav.Link>
               <FontAwesomeIcon className="icones" icon={faRightFromBracket} />
             </Nav.Link>
           </Nav>
