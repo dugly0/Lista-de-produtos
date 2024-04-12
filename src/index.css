@@ -1,4 +1,9 @@
 .border-end{
-  height: relative;
   height: 600px;
+}
+.bt{
+  background-color: #820053;
+  color: white;
+  border-color: #410029;
+  border-radius: 10%;
 }
