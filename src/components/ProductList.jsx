@@ -1,4 +1,7 @@
 import React, { useState, useMemo } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faStar, faTrashCan } from "@fortawesome/free-solid-svg-icons";
+
 
 // Componente da lista de produtos
 const ProductList = ({ products, onToggleFavorite, onDelete }) => {
@@ -81,10 +84,10 @@ const ProductList = ({ products, onToggleFavorite, onDelete }) => {
             <strong>{product.name}</strong> - Categoria: {product.category},
             Preço de Compra: {product.purchasePrice}, Preço de Venda:{" "}
             {product.sellingPrice}, Estoque: {product.stock}
-            <button onClick={() => onToggleFavorite(product.id)}>
-              {product.favorite ? "Desmarcar Favorito" : "Marcar como Favorito"}
-            </button>
-            <button onClick={() => onDelete(product.id)}>Excluir</button>
+            <a onClick={() => onToggleFavorite(product.id)}>
+              {product.favorite ? <FontAwesomeIcon icon={faStar} style={{color: "#FFD43B",}} size="lg" /> : <FontAwesomeIcon icon={faStar} size="lg" />}
+            </a>
+            <FontAwesomeIcon icon={faTrashCan} size="lg" style={{color: '#EE4266'}} onClick={() => onDelete(product.id)}>Excluir</FontAwesomeIcon>
           </li>
         ))}
       </ul>
