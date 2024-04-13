@@ -12,8 +12,9 @@ import Navbar from "./navbar";
 
 const ProductManagementApp = () => {
   const [products, setProducts] = useState([]); // Estado para os produtos
-  const [categories, setCategories] = useState([]); // Estado para as categorias
+  const [categories, setCategories] = useState(["Frutas","Leite","Banheiro","Frios","Carnes"]); // Estado para as categorias
   const [favoriteProducts, setFavoriteProducts] = useState([]); // Estado para os produtos favoritos
+  
 
   // Função para adicionar um novo produto à lista de produtos
   const handleAddProduct = (newProduct) => {
@@ -62,6 +63,7 @@ const ProductManagementApp = () => {
       (product) => product.category !== categoryToDelete
     );
     setProducts(updatedProducts);
+    
 
     const updatedFavoriteProducts = updatedProducts.filter(
       (product) => product.favorite
@@ -72,17 +74,24 @@ const ProductManagementApp = () => {
       (category) => category !== categoryToDelete
     );
     setCategories(updatedCategories);
+    
   };
 
   return (
     <div>
-      <Navbar />;
+      <Navbar />
       <Container fluid>
         <Row>
           <Col xs={4} md={2} className="border-end">
-            <div className="d-flex">
-              <div className="mt-5">
-                <h1>Gestão de Produtos do Supermercado</h1>
+
+              <CategoryManagement
+              categories={categories}
+              onAddCategory={handleAddCategory}
+              onDeleteCategory={handleDeleteCategory}
+            />
+          </Col>
+          <Col>
+          <h1>Gestão de Produtos do Supermercado</h1>
                 {/* Componente de formulário para adicionar produtos */}
                 <AddProductForm
                   onAdd={handleAddProduct}
@@ -94,18 +103,8 @@ const ProductManagementApp = () => {
                   onToggleFavorite={handleToggleFavorite}
                   onDelete={handleDeleteProduct}
                 />
-              </div>
-            </div>
-          </Col>
-          <Col>
             {/* Componente de lista de produtos favoritos */}
             <FavoriteProductList favoriteProducts={favoriteProducts} />
-            {/* Componente de gerenciamento de categorias */}
-            <CategoryManagement
-              categories={categories}
-              onAddCategory={handleAddCategory}
-              onDeleteCategory={handleDeleteCategory}
-            />
           </Col>
         </Row>
       </Container>

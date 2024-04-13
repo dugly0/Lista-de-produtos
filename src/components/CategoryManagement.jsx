@@ -1,3 +1,5 @@
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import React, { useState } from "react";
 
 // Componente para adicionar e excluir categorias
@@ -12,30 +14,52 @@ const CategoryManagement = ({
     if (newCategory.trim() !== "") {
       onAddCategory(newCategory);
       setNewCategory("");
+      setMostrarInput(false);
+    }
+  };
+  const handleDeleteCategory = (category) => {
+    // Exibe um alerta de confirmação antes de excluir a categoria
+    const confirmDelete = window.confirm(`Tem certeza que deseja excluir a categoria "${category}"?`);
+    if (confirmDelete) {
+      onDeleteCategory(category);
     }
   };
 
+  
+
+  const [mostrarInput, setMostrarInput] = useState(false);
+
   return (
     <div>
-      <h2>Gerenciamento de Categorias</h2>
+      <h2>Categorias</h2>
       <div>
-        {/* Formulário para adicionar nova categoria */}
-        <input
+      <ul style={{
+        listStyleType:'none'
+      }}>
+        {/* Renderiza a lista de categorias existentes */}
+        {categories.map((category, index) => (
+          <li key={index}>
+            - {category}
+            <FontAwesomeIcon className="xmark" style={{cursor:'pointer'}} icon={faXmark}  onClick={()=>handleDeleteCategory(category)}>Excluir</FontAwesomeIcon>
+          </li>
+        ))}
+      </ul>
+      </div>
+      <div>
+      {mostrarInput ? (
+       <div>
+       {/* Formulário para adicionar nova categoria */}
+       <input
           type="text"
           value={newCategory}
           onChange={(e) => setNewCategory(e.target.value)}
         />
-        <button onClick={handleAddCategory}>Adicionar Categoria</button>
+        <button className="bt mt-1" onClick={handleAddCategory} >Criar</button>
       </div>
-      <ul>
-        {/* Renderiza a lista de categorias existentes */}
-        {categories.map((category, index) => (
-          <li key={index}>
-            {category}
-            <button onClick={() => onDeleteCategory(category)}>Excluir</button>
-          </li>
-        ))}
-      </ul>
+       ) : (
+       <u style={{cursor: 'pointer'}} onClick={() => setMostrarInput(true) }>+ Criar nova categoria</u>
+       )}
+       </div>
     </div>
   );
 };
