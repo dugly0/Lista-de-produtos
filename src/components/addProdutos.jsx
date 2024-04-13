@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import "bootstrap/dist/css/bootstrap.css";
 import AddProductForm from "./AddProductForm";
 import ProductList from "./ProductList";
 import FavoriteProductList from "./FavoriteProductList";
@@ -91,7 +92,7 @@ const ProductManagementApp = () => {
             />
           </Col>
           <Col>
-          <h1>Gestão de Produtos do Supermercado</h1>
+          <h1>Adicionar Produtos</h1>
                 {/* Componente de formulário para adicionar produtos */}
                 <AddProductForm
                   onAdd={handleAddProduct}

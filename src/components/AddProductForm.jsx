@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import "bootstrap/dist/css/bootstrap.css";
+import "./styles.css";
 
 // Componente do formulário de adição de produto
 const AddProductForm = ({ onAdd, categories }) => {
@@ -45,62 +47,93 @@ const AddProductForm = ({ onAdd, categories }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <label>
-        Nome do Produto:
-        <input
-          type="text"
-          value={productName}
-          onChange={(e) => setProductName(e.target.value)}
-        />
-      </label>
-      <label>
-        Categoria:
-        <select
-          value={selectedCategory}
-          onChange={(e) => setSelectedCategory(e.target.value)}
-        >
-          <option value="">Selecione uma categoria...</option>
-          {categories.map((category, index) => (
-            <option key={index} value={category}>
-              {category}
-            </option>
-          ))}
-        </select>
-      </label>
-      <label>
-        Preço de Compra:
-        <input
-          type="number"
-          value={purchasePrice}
-          onChange={(e) => setPurchasePrice(e.target.value)}
-        />
-      </label>
-      <label>
-        Preço de Venda:
-        <input
-          type="number"
-          value={sellingPrice}
-          onChange={(e) => setSellingPrice(e.target.value)}
-        />
-      </label>
-      <label>
-        Estoque:
-        <input
-          type="number"
-          value={stock}
-          onChange={(e) => setStock(e.target.value)}
-        />
-      </label>
-      <label>
-        Prioridade:
-        <select value={priority} onChange={(e) => setPriority(e.target.value)}>
-          <option value="normal">Normal</option>
-          <option value="importante">Importante</option>
-        </select>
-      </label>
-      <button type="submit">Adicionar Produto</button>
-    </form>
+    <div className="container">
+      <form onSubmit={handleSubmit} className="input-container p-2 m-3">
+        <div className="row">
+          <div className="col-lg-2 mb-3">
+            <label>
+              Nome do Produto:
+              <input
+                type="text"
+                value={productName}
+                onChange={(e) => setProductName(e.target.value)}
+                className="form-control"
+              />
+            </label>
+          </div>
+          <div className="col-lg-2 mb-3">
+            <label>
+              Categoria:
+              <select
+                value={selectedCategory}
+                onChange={(e) => setSelectedCategory(e.target.value)}
+                className="form-select"
+              >
+                <option value="">Selecionar...</option>
+                {categories.map((category, index) => (
+                  <option key={index} value={category}>
+                    {category}
+                  </option>
+                ))}
+              </select>
+            </label>
+          </div>
+        </div>
+
+        <div className="row">
+          
+          <div className="col-lg-2 mb-3">
+            <label>
+              Preço de Compra:
+              <input
+                type="number"
+                value={purchasePrice}
+                onChange={(e) => setPurchasePrice(e.target.value)}
+                className="form-control"
+              />
+            </label>
+          </div>
+          <div className="col-lg-2 mb-3">
+            <label>
+              Preço de Venda:
+              <input
+                type="number"
+                value={sellingPrice}
+                onChange={(e) => setSellingPrice(e.target.value)}
+                className="form-control"
+              />
+            </label>
+          </div>
+          <div className="col-lg-1 mb-3">
+            <label>
+              Estoque:
+              <input
+                type="number"
+                value={stock}
+                onChange={(e) => setStock(e.target.value)}
+                className="form-control"
+              />
+            </label>
+          </div>
+          <div className="col-lg-2 mb-3">
+            <label>
+              Prioridade:
+              <select
+                value={priority}
+                onChange={(e) => setPriority(e.target.value)}
+                className="form-select"
+              >
+                <option value="normal">Normal</option>
+                <option value="importante">Importante</option>
+              </select>
+            </label>
+          </div>
+        </div>
+        <button type="submit" className="button btn btn-primary p-2">
+          Adicionar Produto
+        </button>
+      </form>
+    </div>
   );
 };
 

@@ -1,0 +1,34 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+}
+
+/* FORM INPUT */
+
+.input-container .form-control, .input-container .form-select{
+    border-color:#820053;
+}
+
+.input-container .form-control[type="text"]:focus{
+    box-shadow: 0 0 5px #820053;
+}
+
+.input-container .form-control[type="number"]:focus, 
+.input-container .form-select:focus{
+    box-shadow: 0 0 5px #820053;
+}
+
+.button {
+    font-weight: 400;
+    justify-content: space-between;
+    background-color: #820053;
+    border-color: transparent;
+}
+
+.button:hover,
+.button:focus {
+    background-color: #a20067 !important;
+    border-color: transparent;
+}
