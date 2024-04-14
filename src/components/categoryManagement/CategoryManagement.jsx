@@ -42,7 +42,6 @@ const CategoryModal = ({
           <Modal.Title>Categorias</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <h2>Categorias</h2>
           <div>
             <ul style={{ listStyleType: "none" }}>
               {categories.map((category, index) => (
