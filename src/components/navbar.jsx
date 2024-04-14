@@ -9,10 +9,10 @@ import "./navbar.css";
 
 function NavbarPagina() {
   return (
-    <Navbar expand="lg" className="navbar__cor">
+    <Navbar expand="lg" className="navbar-custom">
       <Container>
         <Navbar.Brand>
-          <div className="imagem">
+          <div className="img-fluid">
             <img src={logo} alt="Logo" />
           </div>
         </Navbar.Brand>
@@ -20,7 +20,7 @@ function NavbarPagina() {
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto" />
           <Nav className="ml-auto">
-            <Nav.Link className="icones">
+            <Nav.Link className="d-flex">
               <FontAwesomeIcon className="icones" icon={faUser} />
             </Nav.Link>
             <Nav.Link>
