@@ -55,7 +55,7 @@ const ProductList = ({ products, onToggleFavorite, onDelete }) => {
         {/* Campos de filtro e ordenação */}
         <Form>
           <Row>
-            <Col sm={6} md={3} className="mb-1">
+            <Col sm={6} md={2} className="mb-1">
               <Form.Group controlId="filterByName">
                 <Form.Control
                   type="text"
@@ -65,7 +65,7 @@ const ProductList = ({ products, onToggleFavorite, onDelete }) => {
                 />
               </Form.Group>
             </Col>
-            <Col sm={6} md={3} className="mb-1">
+            <Col sm={6} md={2} className="mb-1">
               <Form.Group controlId="filterByCategory">
                 <Form.Control
                   type="text"
