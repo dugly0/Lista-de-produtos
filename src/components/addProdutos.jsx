@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import AddProductForm from "./addProductForm/AddProductForm";
-import ProductList from "./ProductList";
+import ProductList from "./productList/ProductList";
 import FavoriteProductList from "./FavoriteProductList";
 import CategoryManagement from "./categoryManagement/CategoryManagement";
 import Container from "react-bootstrap/Container";
+import "bootstrap/dist/css/bootstrap.css";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Navbar from "./navbar";
@@ -83,7 +84,7 @@ const ProductManagementApp = () => {
   return (
     <div>
       <Navbar />
-      <Container className="d-flex justify-content-center">
+      <Container fluid="lg">
         <Row>
           <Col className="mt-4 m-12">
             <div>

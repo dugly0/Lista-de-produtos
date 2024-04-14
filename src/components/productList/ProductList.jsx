@@ -1,8 +1,8 @@
 import React, { useState, useMemo } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar, faTrashCan } from "@fortawesome/free-solid-svg-icons";
-
-
+import { Form, Row, Col, Dropdown } from "react-bootstrap";
+import "./assets/css/styles.css"
 
 // Componente da lista de produtos
 const ProductList = ({ products, onToggleFavorite, onDelete }) => {
@@ -51,32 +51,52 @@ const ProductList = ({ products, onToggleFavorite, onDelete }) => {
 
   return (
     <div>
-      <h2>Lista de Produtos</h2>
       <div>
         {/* Campos de filtro e ordenação */}
-        <input
-          type="text"
-          placeholder="Filtrar por nome..."
-          value={filterName}
-          onChange={(e) => setFilterName(e.target.value)}
-        />
-        <input
-          type="text"
-          placeholder="Filtrar por categoria..."
-          value={filterCategory}
-          onChange={(e) => setFilterCategory(e.target.value)}
-        />
-        <label>
-          Ordenar por Prioridade:
-          <select
-            value={sortPriority}
-            onChange={(e) => setSortPriority(e.target.value)}
-          >
-            <option value="">Nenhuma</option>
-            <option value="normal">Normal</option>
-            <option value="importante">Importante</option>
-          </select>
-        </label>
+        <Form>
+          <Row>
+            <Col sm={6} md={3} className="mb-1">
+              <Form.Group controlId="filterByName">
+                <Form.Control
+                  type="text"
+                  placeholder="Filtrar por nome..."
+                  value={filterName}
+                  onChange={(e) => setFilterName(e.target.value)}
+                />
+              </Form.Group>
+            </Col>
+            <Col sm={6} md={3} className="mb-1">
+              <Form.Group controlId="filterByCategory">
+                <Form.Control
+                  type="text"
+                  placeholder="Filtrar por categoria..."
+                  value={filterCategory}
+                  onChange={(e) => setFilterCategory(e.target.value)}
+                />
+              </Form.Group>
+            </Col>
+            <Col sm={6} md={3} className="mb-1">
+              <Dropdown>
+                <Dropdown.Toggle
+                  variant="primary"
+                  id="dropdown-sort-by-priority"
+                  className="dropdown-toggle-left"
+                >
+                  Ordenar por prioridade {sortPriority && `(${sortPriority})`}
+                </Dropdown.Toggle>
+
+                <Dropdown.Menu className="w-auto">
+                  <Dropdown.Item onClick={() => setSortPriority("normal")}>
+                    Normal
+                  </Dropdown.Item>
+                  <Dropdown.Item onClick={() => setSortPriority("importante")}>
+                    Importante
+                  </Dropdown.Item>
+                </Dropdown.Menu>
+              </Dropdown>
+            </Col>
+          </Row>
+        </Form>
       </div>
       <ul>
         {/* Renderiza os produtos filtrados e ordenados */}
@@ -86,9 +106,24 @@ const ProductList = ({ products, onToggleFavorite, onDelete }) => {
             Preço de Compra: {product.purchasePrice}, Preço de Venda:{" "}
             {product.sellingPrice}, Estoque: {product.stock}
             <a onClick={() => onToggleFavorite(product.id)}>
-              {product.favorite ? <FontAwesomeIcon icon={faStar} style={{color: "#FFD43B",}} size="lg" /> : <FontAwesomeIcon icon={faStar} size="lg" />}
+              {product.favorite ? (
+                <FontAwesomeIcon
+                  icon={faStar}
+                  style={{ color: "#FFD43B" }}
+                  size="lg"
+                />
+              ) : (
+                <FontAwesomeIcon icon={faStar} size="lg" />
+              )}
             </a>
-            <FontAwesomeIcon icon={faTrashCan} size="lg" style={{color: '#EE4266'}} onClick={() => onDelete(product.id)}>Excluir</FontAwesomeIcon>
+            <FontAwesomeIcon
+              icon={faTrashCan}
+              size="lg"
+              style={{ color: "#EE4266" }}
+              onClick={() => onDelete(product.id)}
+            >
+              Excluir
+            </FontAwesomeIcon>
           </li>
         ))}
       </ul>

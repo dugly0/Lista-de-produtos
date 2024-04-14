@@ -1,0 +1,22 @@
+.dropdown-toggle-left {
+    color:#616161;
+    border-color: #d6d6d6;
+    background-color: transparent !important;
+    justify-content: flex-start;
+    width: 100%;
+    text-align: left;
+}
+
+.dropdown-toggle-left:hover,
+.dropdown-toggle-left:active{
+    color:#616161;
+    border-color: #d6d6d6 !important;
+    background-color: none !important;
+}
+
+.dropdown-toggle-left:focus{
+    color:#616161;
+    border-color: #d6d6d6;
+}
+
+  

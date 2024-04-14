@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { Modal, Button } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
-import "./assets/css/styles.css";
 
 const CategoryModal = ({
   categories,
