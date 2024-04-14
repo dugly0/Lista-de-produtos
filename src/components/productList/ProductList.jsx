@@ -62,6 +62,7 @@ const ProductList = ({ products, onToggleFavorite, onDelete }) => {
                   placeholder="Filtrar por nome..."
                   value={filterName}
                   onChange={(e) => setFilterName(e.target.value)}
+                  className="custom-input"
                 />
               </Form.Group>
             </Col>
@@ -72,6 +73,7 @@ const ProductList = ({ products, onToggleFavorite, onDelete }) => {
                   placeholder="Filtrar por categoria..."
                   value={filterCategory}
                   onChange={(e) => setFilterCategory(e.target.value)}
+                  className="custom-input"
                 />
               </Form.Group>
             </Col>
