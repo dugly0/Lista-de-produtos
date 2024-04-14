@@ -1,9 +1,8 @@
 import React, { useState } from "react";
-import "bootstrap/dist/css/bootstrap.css";
-import AddProductForm from "./AddProductForm";
+import AddProductForm from "./addProductForm/AddProductForm";
 import ProductList from "./ProductList";
 import FavoriteProductList from "./FavoriteProductList";
-import CategoryManagement from "./CategoryManagement";
+import CategoryManagement from "./categoryManagement/CategoryManagement";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
@@ -13,9 +12,14 @@ import Navbar from "./navbar";
 
 const ProductManagementApp = () => {
   const [products, setProducts] = useState([]); // Estado para os produtos
-  const [categories, setCategories] = useState(["Frutas","Leite","Banheiro","Frios","Carnes"]); // Estado para as categorias
+  const [categories, setCategories] = useState([
+    "Frutas",
+    "Leite",
+    "Banheiro",
+    "Frios",
+    "Carnes",
+  ]); // Estado para as categorias
   const [favoriteProducts, setFavoriteProducts] = useState([]); // Estado para os produtos favoritos
-  
 
   // Função para adicionar um novo produto à lista de produtos
   const handleAddProduct = (newProduct) => {
@@ -64,7 +68,6 @@ const ProductManagementApp = () => {
       (product) => product.category !== categoryToDelete
     );
     setProducts(updatedProducts);
-    
 
     const updatedFavoriteProducts = updatedProducts.filter(
       (product) => product.favorite
@@ -75,37 +78,49 @@ const ProductManagementApp = () => {
       (category) => category !== categoryToDelete
     );
     setCategories(updatedCategories);
-    
   };
 
   return (
     <div>
       <Navbar />
-      <Container fluid>
+      <Container className="d-flex justify-content-center">
         <Row>
-          <Col xs={4} md={2} className="border-end">
-
-              <CategoryManagement
-              categories={categories}
-              onAddCategory={handleAddCategory}
-              onDeleteCategory={handleDeleteCategory}
-            />
-          </Col>
-          <Col>
-          <h1>Adicionar Produtos</h1>
-                {/* Componente de formulário para adicionar produtos */}
+          <Col className="mt-4 m-12">
+            <div>
+              {" "}
+              {/* Coluna para a lista de produtos */}
+              <h1>Lista de Produtos</h1>
+              {/* Aqui vai o conteúdo da lista de produtos */}
+            </div>
+            <Row>
+              <Col>
+                {/* Componente de formulário para visualizar Categorias */}
+                <CategoryManagement
+                  categories={categories}
+                  onAddCategory={handleAddCategory}
+                  onDeleteCategory={handleDeleteCategory}
+                />
+                {" "}
+                {/* Componente de formulário para adicionar Produtos */}
                 <AddProductForm
                   onAdd={handleAddProduct}
                   categories={categories}
                 />
-                {/* Componente de lista de produtos */}
-                <ProductList
-                  products={products}
-                  onToggleFavorite={handleToggleFavorite}
-                  onDelete={handleDeleteProduct}
-                />
-            {/* Componente de lista de produtos favoritos */}
-            <FavoriteProductList favoriteProducts={favoriteProducts} />
+              </Col>
+            </Row>
+
+            <div className="mt-4">
+              {/* Componente de lista de produtos */}
+              <ProductList
+                products={products}
+                onToggleFavorite={handleToggleFavorite}
+                onDelete={handleDeleteProduct}
+              />
+            </div>
+            <div className="mb-4">
+              {/* Componente de lista de produtos favoritos */}
+              <FavoriteProductList favoriteProducts={favoriteProducts} />
+            </div>
           </Col>
         </Row>
       </Container>

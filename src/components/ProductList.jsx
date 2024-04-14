@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar, faTrashCan } from "@fortawesome/free-solid-svg-icons";
 
 
+
 // Componente da lista de produtos
 const ProductList = ({ products, onToggleFavorite, onDelete }) => {
   const [filterName, setFilterName] = useState(""); // Estado para filtrar por nome

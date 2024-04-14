@@ -1,15 +1,20 @@
 import React, { useState } from "react";
 import "bootstrap/dist/css/bootstrap.css";
-import "./styles.css";
+import { Button, Modal, Form } from "react-bootstrap";
+import "./assets/css/styles.css";
 
 // Componente do formulário de adição de produto
 const AddProductForm = ({ onAdd, categories }) => {
+  const [show, setShow] = useState(false); // Estado para controlar a exibição do modal
   const [productName, setProductName] = useState(""); // Estado para o nome do produto
   const [selectedCategory, setSelectedCategory] = useState(""); // Estado para a categoria selecionada
   const [purchasePrice, setPurchasePrice] = useState(""); // Estado para o preço de compra
   const [sellingPrice, setSellingPrice] = useState(""); // Estado para o preço de venda
   const [stock, setStock] = useState(""); // Estado para o estoque
   const [priority, setPriority] = useState("normal"); // Estado para a prioridade
+
+  const handleClose = () => setShow(false); // Função para fechar o modal
+  const handleShow = () => setShow(true); // Função para abrir o modal
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -44,30 +49,39 @@ const AddProductForm = ({ onAdd, categories }) => {
     setSellingPrice("");
     setStock("");
     setPriority("normal"); // Reinicia a prioridade para o valor padrão
+    setShow(false); // Fecha o modal após o envio do formulário
   };
 
   return (
-    <div className="container">
-      <form onSubmit={handleSubmit} className="input-container p-2 m-3">
-        <div className="row">
-          <div className="col-lg-2 mb-3">
-            <label>
-              Nome do Produto:
-              <input
+    <>
+      <Button variant="primary" onClick={handleShow} className="button">
+        Adicionar Produto
+      </Button>
+
+      <Modal show={show} onHide={handleClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>Adicionar Produto</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <Form onSubmit={handleSubmit}>
+            {/* Grupo 1: Nome do Produto e Categoria */}
+            <Form.Group className="mb-3" controlId="productName">
+              <Form.Label>Nome do Produto:</Form.Label>
+              <Form.Control
                 type="text"
                 value={productName}
                 onChange={(e) => setProductName(e.target.value)}
-                className="form-control"
+                placeholder="Digite o nome do produto"
+                className="custom-input"
               />
-            </label>
-          </div>
-          <div className="col-lg-2 mb-3">
-            <label>
-              Categoria:
-              <select
+            </Form.Group>
+            <Form.Group className="mb-3" controlId="category">
+              <Form.Label>Categoria:</Form.Label>
+              <Form.Select
                 value={selectedCategory}
                 onChange={(e) => setSelectedCategory(e.target.value)}
-                className="form-select"
+                aria-label="Selecione a categoria"
+                className="custom-select"
               >
                 <option value="">Selecionar...</option>
                 {categories.map((category, index) => (
@@ -75,65 +89,63 @@ const AddProductForm = ({ onAdd, categories }) => {
                     {category}
                   </option>
                 ))}
-              </select>
-            </label>
-          </div>
-        </div>
+              </Form.Select>
+            </Form.Group>
 
-        <div className="row">
-          
-          <div className="col-lg-2 mb-3">
-            <label>
-              Preço de Compra:
-              <input
+            {/* Grupo 2: Preço de Compra, Preço de Venda e Estoque */}
+            <Form.Group className="mb-3" controlId="purchasePrice">
+              <Form.Label>Preço de Compra:</Form.Label>
+              <Form.Control
                 type="number"
                 value={purchasePrice}
                 onChange={(e) => setPurchasePrice(e.target.value)}
-                className="form-control"
+                placeholder="Digite o preço de compra"
+                className="custom-input"
               />
-            </label>
-          </div>
-          <div className="col-lg-2 mb-3">
-            <label>
-              Preço de Venda:
-              <input
+            </Form.Group>
+            <Form.Group className="mb-3" controlId="sellingPrice">
+              <Form.Label>Preço de Venda:</Form.Label>
+              <Form.Control
                 type="number"
                 value={sellingPrice}
                 onChange={(e) => setSellingPrice(e.target.value)}
-                className="form-control"
+                placeholder="Digite o preço de venda"
+                className="custom-input"
               />
-            </label>
-          </div>
-          <div className="col-lg-1 mb-3">
-            <label>
-              Estoque:
-              <input
+            </Form.Group>
+            <Form.Group className="mb-3" controlId="stock">
+              <Form.Label>Estoque:</Form.Label>
+              <Form.Control
                 type="number"
                 value={stock}
                 onChange={(e) => setStock(e.target.value)}
-                className="form-control"
+                placeholder="Digite o estoque disponível"
+                className="custom-input"
               />
-            </label>
-          </div>
-          <div className="col-lg-2 mb-3">
-            <label>
-              Prioridade:
-              <select
+            </Form.Group>
+
+            {/* Grupo 3: Prioridade */}
+            <Form.Group className="mb-3" controlId="priority">
+              <Form.Label>Prioridade:</Form.Label>
+              <Form.Select
                 value={priority}
                 onChange={(e) => setPriority(e.target.value)}
-                className="form-select"
+                aria-label="Selecione a prioridade"
+                className="custom-select"
               >
                 <option value="normal">Normal</option>
                 <option value="importante">Importante</option>
-              </select>
-            </label>
-          </div>
-        </div>
-        <button type="submit" className="button btn btn-primary p-2">
-          Adicionar Produto
-        </button>
-      </form>
-    </div>
+              </Form.Select>
+            </Form.Group>
+          </Form>
+        </Modal.Body>
+        <Modal.Footer className="justify-content-center">
+          <Button variant="primary" type="submit" onClick={handleSubmit} className="button">
+            Adicionar
+          </Button>
+        </Modal.Footer>
+      </Modal>
+    </>
   );
 };
 

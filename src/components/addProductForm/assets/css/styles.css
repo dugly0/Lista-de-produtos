@@ -5,19 +5,17 @@
     text-decoration: none;
 }
 
-/* FORM INPUT */
+/* INPUT, SELECT */
 
-.input-container .form-control, .input-container .form-select{
+.custom-input, .custom-select{
     border-color:#820053;
+    box-shadow: #820053;
 }
 
-.input-container .form-control[type="text"]:focus{
+.custom-input:focus, 
+.custom-select:focus{
     box-shadow: 0 0 5px #820053;
-}
-
-.input-container .form-control[type="number"]:focus, 
-.input-container .form-select:focus{
-    box-shadow: 0 0 5px #820053;
+    border-color: #820053;
 }
 
 .button {
