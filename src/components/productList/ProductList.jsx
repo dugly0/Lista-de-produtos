@@ -88,6 +88,9 @@ const ProductList = ({ products, onToggleFavorite, onDelete }) => {
                 </Dropdown.Toggle>
 
                 <Dropdown.Menu className="w-auto">
+                  <Dropdown.Item onClick={() => setSortPriority("")}>
+                    Todos
+                  </Dropdown.Item>
                   <Dropdown.Item onClick={() => setSortPriority("normal")}>
                     Normal
                   </Dropdown.Item>
