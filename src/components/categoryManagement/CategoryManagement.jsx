@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import { Modal, Button } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTimes } from "@fortawesome/free-solid-svg-icons";
+import { faXmark } from "@fortawesome/free-solid-svg-icons";
 
 const CategoryModal = ({
   categories,
-  handleDeleteCategory,
+  onDeleteCategory,
   handleAddCategory,
   onHide,
 }) => {
@@ -18,12 +18,20 @@ const CategoryModal = ({
     setMostrarInput(false);
     onHide();
   };
+  
 
   const handleConfirmAddCategory = () => {
     if (newCategory.trim() !== "") {
       handleAddCategory(newCategory);
       setNewCategory("");
       setMostrarInput(false);
+    }
+  };
+
+  const handleDeleteCategory = (category) => {
+    const confirmDelete = window.confirm(`Tem certeza que deseja excluir a categoria "${category}"?`);
+    if (confirmDelete) {
+      onDeleteCategory(category);
     }
   };
 
@@ -50,7 +58,7 @@ const CategoryModal = ({
                   <FontAwesomeIcon
                     className="xmark"
                     style={{ cursor: "pointer" }}
-                    icon={faTimes}
+                    icon={faXmark}
                     onClick={() => handleDeleteCategory(category)}
                   />{" "}
                 </li>
@@ -99,7 +107,7 @@ const CategoryManagement = ({
     <CategoryModal
       show={showModal}
       categories={categories}
-      handleDeleteCategory={onDeleteCategory}
+      onDeleteCategory={onDeleteCategory}
       handleAddCategory={onAddCategory}
       onHide={handleHideModal}
     />
